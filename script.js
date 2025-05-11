@@ -6,16 +6,27 @@ let userGoalValue = document.querySelector("#goal");
 
 let userInformation = [];
 
+// creat warning div
+
+let warningDiv = document.createElement("div");
+warningDiv.className = "warning-message py-2 radius-md";
+
+console.log(warningDiv);
+
+// populate the array from the existing content from the storage
+
 if (localStorage.getItem("users")) {
   userInformation = JSON.parse(localStorage.getItem("users"));
-  console.log(userInformation);
 }
+
 submitBtn.onclick = function (e) {
-  let userName = userNameValue.value;
-  let userEmail = userEmailValue.value;
-  let userAge = userAgeValue.value;
-  let userGoal = userGoalValue.value;
+  let userName = userNameValue.value.trim();
+  let userEmail = userEmailValue.value.trim();
+  let userAge = userAgeValue.value.trim();
+  let userGoal = userGoalValue.value.trim();
   e.preventDefault();
+
+  // assign the variable to the return value of the validating function
   let validuser = validating(
     userName,
     userEmail,
@@ -23,35 +34,69 @@ submitBtn.onclick = function (e) {
     userGoal,
     userInformation
   );
-  if (validuser) {
+
+  if (typeof validuser === "object") {
+    // calling the function that adds the new content to the array and storage
+
     addInfoToArrayAndToStorage(validuser);
+    if (document.forms[0].contains(warningDiv)) {
+      warningDiv.remove();
+    }
+    window.location.href = "main.html";
   } else {
-    window.alert("the email already exist or one of the fields is empty");
+    warningDiv.textContent = validuser;
+    document.forms[0].appendChild(warningDiv);
   }
 };
 
 // validating
 function validating(name, email, age, goal, array) {
-  let result = emailChecker(array, email);
-  if (name != "" && email != "" && age != "" && goal != "" && !result) {
-    return {
-      name: name,
-      email: email,
-      age: age,
-      goal: goal,
-    };
-  } else {
-    return false;
+  // here we call the function that check the email if already exist we assign it to result
+  let nameChecker = checkingName(name);
+  if (nameChecker !== true) return nameChecker;
+
+  let emailChecking = checkingEmail(email);
+  if (emailChecking !== true) return emailChecking;
+
+  let ageChecker = checkingAge(age);
+  if (ageChecker !== true) return ageChecker;
+
+  let goalChecker = checkingGoal(goal);
+  if (goalChecker !== true) return goalChecker;
+
+  if (emailChecker(array, email)) {
+    return "email already exists";
   }
+  return {
+    name: name,
+    email: email.toLowerCase(),
+    age: age,
+    goal: goal,
+  };
 }
 
-//adding information to the array and the storage
+function checkingName(n) {
+  return n != "" ? true : "Your Name field is empty!";
+}
+function checkingEmail(e) {
+  return e != "" ? true : "Your email field is empty!";
+}
+function checkingAge(a) {
+  return a != "" && !isNaN(a)
+    ? true
+    : "eather age filed is emty or not a valid age";
+}
+function checkingGoal(g) {
+  return g != "" ? true : "goal filed is empty";
+}
+
+//pushing elements to array and storage
 function addInfoToArrayAndToStorage(info) {
   userInformation.push(info);
   window.localStorage.setItem("users", JSON.stringify(userInformation));
 }
 
-// email checker
+// checking if the email already exist
 function emailChecker(array, input) {
   let exist = false;
   for (let i = 0; i < array.length; i++) {

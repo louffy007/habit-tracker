@@ -14,6 +14,7 @@
   --primary-color-btn: #00b4d8;
   --success: #2ec4b6;
   --warning: #ff9f1c;
+  --error: #f34957;
 
   /*typography*/
   --text-primary: #4a4a4a;
@@ -71,4 +72,10 @@ form input {
   font-weight: bolder;
   font-size: 1.05rem;
   text-transform: uppercase;
+}
+.warning-message {
+  background-color: var(--error);
+  width: 100%;
+  text-align: center;
+  color: var(--cards-form);
 }

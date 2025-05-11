@@ -28,12 +28,21 @@
         required
       />
       <label for="age">Your Age</label>
-      <input class="p-2 radius-md" type="number" name="age" id="age" required />
+      <input
+        class="p-2 radius-md"
+        type="number"
+        name="age"
+        id="age"
+        min="18"
+        max="80"
+        required
+      />
       <label for="goal">Your Goal</label>
       <input class="p-2 radius-md" type="text" name="goal" id="goal" required />
       <input class="submit-btn p-2 radius-md" type="submit" value="Submit" />
+      
     </form>
-
+    
     <script src="script.js"></script>
   </body>
 </html>
