@@ -1,0 +1,21 @@
+body{
+    font-family: "Poppins", sans-serif;
+}
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: var(--bars);
+  color: var(--cards-form);
+  height: 3rem;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+ul{
+    display: flex;
+    gap: var(--space-2);
+    list-style: none;
+}

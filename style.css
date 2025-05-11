@@ -1,43 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
-/* Global reset */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-:root {
-  /*UI Colors*/
-  --primary-color-btn: #00b4d8;
-  --success: #2ec4b6;
-  --warning: #ff9f1c;
-  --error: #f34957;
-
-  /*typography*/
-  --text-primary: #4a4a4a;
-  --text-secondary: #9e9e9e;
-
-  /*bqckground*/
-  --bg: #f4f6f8;
-  --cards-form: #ffffff;
-  --bars: #1e2a38;
-
-  /*spacing*/
-  --space-1: 8px;
-  --space-2: 16px;
-  --space-3: 24px;
-  --space-4: 32px;
-  --space-5: 40px;
-
-  /*raduis*/
-
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-}
 
 body {
   font-family: "Poppins", sans-serif;

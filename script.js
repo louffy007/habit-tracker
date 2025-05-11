@@ -3,6 +3,7 @@ let userNameValue = document.querySelector("#full-name");
 let userEmailValue = document.querySelector("#email");
 let userAgeValue = document.querySelector("#age");
 let userGoalValue = document.querySelector("#goal");
+let userPassWordValue = document.querySelector("#password");
 
 let userInformation = [];
 
@@ -24,6 +25,7 @@ submitBtn.onclick = function (e) {
   let userEmail = userEmailValue.value.trim();
   let userAge = userAgeValue.value.trim();
   let userGoal = userGoalValue.value.trim();
+  let userPassWord = userPassWordValue.value.trim();
   e.preventDefault();
 
   // assign the variable to the return value of the validating function
@@ -32,6 +34,7 @@ submitBtn.onclick = function (e) {
     userEmail,
     userAge,
     userGoal,
+    userPassWord,
     userInformation
   );
 
@@ -50,7 +53,7 @@ submitBtn.onclick = function (e) {
 };
 
 // validating
-function validating(name, email, age, goal, array) {
+function validating(name, email, age, goal, password, array) {
   // here we call the function that check the email if already exist we assign it to result
   let nameChecker = checkingName(name);
   if (nameChecker !== true) return nameChecker;
@@ -64,6 +67,9 @@ function validating(name, email, age, goal, array) {
   let goalChecker = checkingGoal(goal);
   if (goalChecker !== true) return goalChecker;
 
+  let passwordChecker = checkingpassWord(password);
+  if (passwordChecker !== true) return passwordChecker;
+
   if (emailChecker(array, email)) {
     return "email already exists";
   }
@@ -72,6 +78,7 @@ function validating(name, email, age, goal, array) {
     email: email.toLowerCase(),
     age: age,
     goal: goal,
+    password: password,
   };
 }
 
@@ -88,6 +95,9 @@ function checkingAge(a) {
 }
 function checkingGoal(g) {
   return g != "" ? true : "goal filed is empty";
+}
+function checkingpassWord(p) {
+  return p != "" ? true : "password filed is empty";
 }
 
 //pushing elements to array and storage
