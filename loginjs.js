@@ -10,8 +10,10 @@ let storedInfo = [];
 
 if (localStorage.getItem("users")) {
   storedInfo = JSON.parse(localStorage.getItem("users"));
+} else {
+  window.location.href = "signup.html";
 }
-console.log(storedInfo);
+
 submitLogin.onclick = function (e) {
   e.preventDefault();
   let emailLoginValue = emailLogin.value;
@@ -29,6 +31,9 @@ submitLogin.onclick = function (e) {
       warningDiv.innerText =
         "email or password not correct try again or go sign up !";
       document.forms[0].appendChild(warningDiv);
+      setTimeout(() => {
+        warningDiv.remove();
+      }, 5000);
     }
   }
 };

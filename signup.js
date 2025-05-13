@@ -12,8 +12,6 @@ let userInformation = [];
 let warningDiv = document.createElement("div");
 warningDiv.className = "warning-message py-2 radius-md";
 
-
-
 // populate the array from the existing content from the storage
 
 if (localStorage.getItem("users")) {
@@ -91,13 +89,13 @@ function checkingEmail(e) {
 function checkingAge(a) {
   return a != "" && !isNaN(a)
     ? true
-    : "eather age filed is emty or not a valid age";
+    : "eather age field is empty or not a valid age";
 }
 function checkingGoal(g) {
-  return g != "" ? true : "goal filed is empty";
+  return g != "" ? true : "goal field is empty";
 }
 function checkingpassWord(p) {
-  return p != "" ? true : "password filed is empty";
+  return p != "" ? true : "password field is empty";
 }
 
 //pushing elements to array and storage
