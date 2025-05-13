@@ -12,7 +12,7 @@ let userInformation = [];
 let warningDiv = document.createElement("div");
 warningDiv.className = "warning-message py-2 radius-md";
 
-console.log(warningDiv);
+
 
 // populate the array from the existing content from the storage
 
@@ -45,7 +45,7 @@ submitBtn.onclick = function (e) {
     if (document.forms[0].contains(warningDiv)) {
       warningDiv.remove();
     }
-    window.location.href = "main.html";
+    window.location.href = "login.html";
   } else {
     warningDiv.textContent = validuser;
     document.forms[0].appendChild(warningDiv);
