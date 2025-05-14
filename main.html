@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="utilities.css" />
+    <link rel="stylesheet" href="global.css" />
     <link rel="stylesheet" href="Main.css" />
     <title>Habit Tracker</title>
   </head>
@@ -11,12 +12,49 @@
     <header>
       <nav>
         <ul class="mx-3">
-          <li class="name">User :</li>
-          <li class="goal">Goal :</li>
+          <li class="name">User : <span></span></li>
+          <li class="goal">Goal : <span></span></li>
         </ul>
-        <button class="mx-3 px-3 py-1">Add new Habit</button>
+        <button class="mx-3 px-3 py-1 add-habit">Add new Habit</button>
       </nav>
     </header>
+    <main>
+      <div class="modal">
+        <form class="py-3 px-3 radius-lg modal-form">
+          <label for="habit-title">Habit title : </label>
+          <input
+            class="p-2 radius-md"
+            type="text"
+            name="title-input"
+            id="habit-title"
+            required
+          />
+
+          <label for="habit-cat">Habit Category : </label>
+          <input
+            class="p-2 radius-md"
+            type="text"
+            name="cat-input"
+            id="habit-cat"
+            required
+          />
+
+          <label for="habit-description">Habit description : </label>
+          <textarea
+            class="p-2 radius-md"
+            name="description-input"
+            id="habit-description"
+            required
+          ></textarea>
+
+          <input
+            class="submit-btn p-2 radius-md"
+            type="button"
+            value="Submit"
+          />
+        </form>
+      </div>
+    </main>
     <script src="main.js"></script>
   </body>
 </html>

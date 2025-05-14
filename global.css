@@ -1,0 +1,29 @@
+form {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--cards-form);
+  gap: var(--space-1);
+}
+form input,
+form textarea {
+  border: solid 1px var(--text-secondary);
+  border-radius: inherit;
+}
+textarea {
+  resize: vertical;
+  max-height: 200px;
+}
+
+.submit-btn {
+  border: none;
+  cursor: pointer;
+  background-color: var(--primary-color-btn);
+  color: var(--cards-form);
+  font-family: "Roboto", sans-serif;
+  font-weight: bolder;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+}

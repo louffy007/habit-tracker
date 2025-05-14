@@ -25,6 +25,7 @@ submitLogin.onclick = function (e) {
     );
   });
   if (found) {
+    window.localStorage.setItem("currentUser", JSON.stringify(found));
     window.location.href = "main.html";
   } else {
     if (!document.forms[0].contains(warningDiv)) {
