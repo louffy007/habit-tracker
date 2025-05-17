@@ -3,8 +3,8 @@
 // ==========================
 
 //creat one card.
+let sectionContainer = document.querySelector(".section-container");
 function elementsAdding(habit) {
-  let sectionContainer = document.querySelector(".section-container");
   //creat card elements
   let habitCardElement = document.createElement("article");
   let cardTop = document.createElement("div");
@@ -38,6 +38,7 @@ function elementsAdding(habit) {
   habitTitleElement.textContent = habit.title;
   habitDescElement.textContent = habit.description;
   habitCatElement.textContent = habit.category;
+  habitCardElement.dataset.id = habit.id;
 
   // appending elements
   cardTop.appendChild(habitTitleElement);
@@ -59,3 +60,20 @@ function cardRendering(habitArr) {
     elementsAdding(habitArr[i]);
   }
 }
+
+// ==========================
+// * card delete full logic
+// ==========================
+
+sectionContainer.addEventListener("click", (e) => {
+  if (e.target.classList.contains("delete-icon")) {
+    let deleted = e.target.closest(".card");
+    let deletedCardId = deleted.dataset.id;
+
+    habits = habits.filter((ele) => {
+      return ele.id !== Number(deletedCardId);
+    });
+    localStorage.setItem(`user: ${currentUser.email}`, JSON.stringify(habits));
+    deleted.remove();
+  }
+});
