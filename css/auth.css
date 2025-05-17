@@ -14,9 +14,4 @@ body {
 
 
 
-.warning-message {
-  background-color: var(--error);
-  width: 100%;
-  text-align: center;
-  color: var(--cards-form);
-}
+

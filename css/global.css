@@ -27,3 +27,9 @@ textarea {
   font-size: 1.05rem;
   text-transform: uppercase;
 }
+.warning-message {
+  background-color: var(--error);
+  width: 100%;
+  text-align: center;
+  color: var(--cards-form);
+}
