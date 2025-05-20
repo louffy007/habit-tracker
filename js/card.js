@@ -22,6 +22,7 @@ function elementsAdding(habit) {
   //add classess to the elements
   habitCardElement.classList.add("card", "radius-md");
   cardTop.classList.add("card-top");
+  habitTitleElement.classList.add("card-title");
   habitCatElement.classList.add("card-cat", "radius-md");
   habitDescElement.classList.add("card-description");
 
@@ -68,12 +69,32 @@ function cardRendering(habitArr) {
 sectionContainer.addEventListener("click", (e) => {
   if (e.target.classList.contains("delete-icon")) {
     let deleted = e.target.closest(".card");
-    let deletedCardId = deleted.dataset.id;
+    let deletedCardId = Number(deleted.dataset.id);
 
     habits = habits.filter((ele) => {
-      return ele.id !== Number(deletedCardId);
+      console.log(typeof ele.id);
+      return ele.id !== deletedCardId;
     });
     localStorage.setItem(`user: ${currentUser.email}`, JSON.stringify(habits));
+
     deleted.remove();
+  }
+});
+
+// ==========================
+// * card edit full logic
+// ==========================
+
+sectionContainer.addEventListener("click", (e) => {
+  if (e.target.classList.contains("edit-icon")) {
+    modalDiv.classList.add("open");
+    editedCardId = Number(e.target.closest(".card").dataset.id);
+    console.log(typeof editedCardId);
+    let editedCard = habits.find((ele) => {
+      return ele.id === editedCardId;
+    });
+    habitTitle.value = editedCard.title;
+    habitCat.value = editedCard.category;
+    habitDesc.value = editedCard.description;
   }
 });

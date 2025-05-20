@@ -1,3 +1,5 @@
+let editedCardId;
+
 // ==========================
 // * USER INFO + HEADER DISPLAY
 // ==========================
@@ -16,6 +18,18 @@ if (currentUser == null) {
 nameField.textContent = currentUser.name;
 goalField.textContent = currentUser.goal;
 
+//logout button
+let logout = document.querySelector(".logout");
+if (logout) {
+  logout.onclick = function () {
+    let confirmed = window.confirm("are you sure you want to logout?");
+    if (confirmed) {
+      localStorage.removeItem("currentUser");
+      window.location.href = "login.html";
+    }
+  };
+}
+
 // ==========================
 // * STORAGE SETUP & HABIT ARRAY
 // ==========================
@@ -28,8 +42,6 @@ window.onload = function () {
   cardRendering(habits);
 };
 
-
-
 // ==========================
 // * MODAL: OPEN / CLOSE HANDLING
 // ==========================
@@ -39,6 +51,7 @@ let addHabit = document.querySelector(".add-habit");
 let modalDiv = document.querySelector(".modal");
 // open and close the modal box.
 addHabit.onclick = function () {
+  editedCardId = null;
   modalDiv.classList.add("open");
 };
 modalDiv.onclick = function (e) {
@@ -57,8 +70,9 @@ let habitSubmit = document.querySelector(".submit-btn");
 
 // getting the form data
 function getFormData() {
+  let idContent = editedCardId || Date.now();
   let dataObject = {
-    id : Date.now(),
+    id: idContent,
     title: habitTitle.value,
     category: habitCat.value,
     description: habitDesc.value,
@@ -96,8 +110,26 @@ let handleSubmit = function (e) {
   let validHabitData = validateData(habitData);
 
   if (validHabitData) {
-    createAndPushHabits(habitData, currentUser.email);
-    elementsAdding(habitData);
+    if (editedCardId) {
+      habits = habits.map((ele) => {
+        return ele.id === Number(editedCardId) ? habitData : ele;
+      });
+      clearDataInput();
+      modalDiv.classList.remove("open");
+      let theCardToEdit = document.querySelector(
+        `.card[data-id="${editedCardId}"]`
+      );
+      let modifiedTitle = theCardToEdit.querySelector(".card-title");
+      let modifiedCat = theCardToEdit.querySelector(".card-cat");
+      let modifiedDesc = theCardToEdit.querySelector(".card-description");
+      modifiedTitle.innerText = habitData.title;
+      modifiedCat.innerText = habitData.category;
+      modifiedDesc.innerText = habitData.description;
+      editedCardId = null;
+    } else {
+      createAndPushHabits(habitData, currentUser.email);
+      elementsAdding(habitData);
+    }
     clearDataInput();
     modalDiv.classList.remove("open");
   } else {
